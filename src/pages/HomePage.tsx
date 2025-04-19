@@ -19,7 +19,7 @@ const HomePage = () => {
       </div>
 
       <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="p-6 rounded-lg shadow-sm border flex flex-col items-center text-center bg-slate-500">
+        <div className="p-6 rounded-lg shadow-sm border flex flex-col items-center text-center bg-slate-400">
           <div className="bg-paper-100 p-3 rounded-full mb-4">
             <Book className="h-8 w-8 text-paper-600" />
           </div>
@@ -31,7 +31,7 @@ const HomePage = () => {
           </p>
         </div>
 
-        <div className="p-6 rounded-lg shadow-sm border flex flex-col items-center text-center bg-slate-500">
+        <div className="p-6 rounded-lg shadow-sm border flex flex-col items-center text-center bg-slate-400">
           <div className="bg-paper-100 p-3 rounded-full mb-4">
             <FileText className="h-8 w-8 text-paper-600" />
           </div>
@@ -43,7 +43,7 @@ const HomePage = () => {
           </p>
         </div>
 
-        <div className="p-6 rounded-lg shadow-sm border flex flex-col items-center text-center bg-slate-500">
+        <div className="p-6 rounded-lg shadow-sm border flex flex-col items-center text-center bg-slate-400">
           <div className="bg-paper-100 p-3 rounded-full mb-4">
             <BookOpen className="h-8 w-8 text-paper-600" />
           </div>
