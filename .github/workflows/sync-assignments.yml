@@ -1,0 +1,30 @@
+
+name: Sync Assignment Files
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'assignments/**'
+
+jobs:
+  sync-assignments:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Copy Assignment Files
+        run: |
+          mkdir -p public/assignments
+          cp -r assignments/* public/assignments/
+
+      - name: Deploy to Production
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npx vercel --token $VERCEL_TOKEN --prod
+
