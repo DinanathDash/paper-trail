@@ -1,18 +1,17 @@
-
 import Breadcrumbs from "@/components/Breadcrumbs";
-
 const AboutPage = () => {
-  const breadcrumbItems = [
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" }
-  ];
-
-  return (
-    <div className="page-container">
+  const breadcrumbItems = [{
+    label: "Home",
+    path: "/"
+  }, {
+    label: "About",
+    path: "/about"
+  }];
+  return <div className="page-container">
       <Breadcrumbs items={breadcrumbItems} />
       <h1 className="page-title">About PaperTrail</h1>
       
-      <div className="bg-white p-6 rounded-lg shadow-sm border max-w-3xl mx-auto">
+      <div className="p-6 rounded-lg shadow-sm border max-w-3xl mx-auto bg-slate-300">
         <h2 className="text-xl font-semibold text-paper-800 mb-4">Project Overview</h2>
         <p className="text-paper-600 mb-4">
           PaperTrail is a digital archive designed to provide B.Tech CSE students easy access to assignments organized by semester and subject. Unlike other platforms that redirect to external sites, PaperTrail hosts all assignments directly, allowing for immediate viewing and downloading.
@@ -33,8 +32,6 @@ const AboutPage = () => {
           We're continuously working to expand our collection of assignments and improve the platform. Future updates will include additional resources like lecture notes, reference materials, and tools to help students excel in their studies.
         </p>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default AboutPage;
