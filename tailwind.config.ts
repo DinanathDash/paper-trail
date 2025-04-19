@@ -20,41 +20,54 @@ export default {
 		},
 		extend: {
 			colors: {
-				background: '#000000',
-				foreground: '#FFFFFF',
+				background: '#0d1117', // GitHub dark background
+				foreground: '#c9d1d9', // GitHub text color
 				primary: {
-					DEFAULT: '#9b87f5', // Primary Purple
+					DEFAULT: '#58a6ff', // GitHub blue
 					foreground: '#FFFFFF'
 				},
 				secondary: {
-					DEFAULT: '#7E69AB', // Secondary Purple
-					foreground: '#FFFFFF'
+					DEFAULT: '#30363d', // GitHub secondary
+					foreground: '#c9d1d9'
 				},
 				accent: {
-					DEFAULT: '#D946EF', // Magenta Pink
+					DEFAULT: '#f78166', // GitHub orange accent
 					foreground: '#FFFFFF'
 				},
 				destructive: {
-					DEFAULT: '#F97316', // Bright Orange
+					DEFAULT: '#f85149', // GitHub red
 					foreground: '#FFFFFF'
 				},
 				muted: {
-					DEFAULT: '#8E9196', // Neutral Gray
-					foreground: '#FFFFFF'
+					DEFAULT: '#8b949e', // GitHub muted text
+					foreground: '#c9d1d9'
 				},
+				border: '#30363d', // GitHub border color
 				paper: {
-					'50': '#D6BCFA', // Light Purple
-					'100': '#8B5CF6', // Vivid Purple
-					'200': '#0EA5E9', // Ocean Blue
-					'300': '#1EAEDB', // Bright Blue
-					'400': '#33C3F0', // Sky Blue
-					'500': '#FFFFFF', // White
-					'600': '#D6BCFA', // Light Purple
-					'700': '#8B5CF6', // Vivid Purple
-					'800': '#0EA5E9', // Ocean Blue
-					'900': '#1EAEDB', // Bright Blue
-					'950': '#33C3F0', // Sky Blue
+					'50': '#f0f6fc', // GitHub lightest gray
+					'100': '#c9d1d9', // GitHub light gray
+					'200': '#8b949e', // GitHub medium gray
+					'300': '#6e7681', // GitHub medium-dark gray
+					'400': '#484f58', // GitHub dark gray
+					'500': '#30363d', // GitHub darker gray
+					'600': '#21262d', // GitHub darkest gray
+					'700': '#161b22', // GitHub near-black
+					'800': '#0d1117', // GitHub background
+					'900': '#010409', // GitHub pure black
+					'950': '#010409', // GitHub pure black (same as 900)
 				},
+			},
+			fontFamily: {
+				mono: [
+					'ui-monospace',
+					'SFMono-Regular',
+					'Menlo',
+					'Monaco',
+					'Consolas',
+					'Liberation Mono',
+					'Courier New',
+					'monospace'
+				],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

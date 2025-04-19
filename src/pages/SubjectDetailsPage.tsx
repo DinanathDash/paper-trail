@@ -32,10 +32,10 @@ const SubjectDetailsPage = () => {
     <div className="page-container">
       <Breadcrumbs items={breadcrumbItems} />
       <h1 className="page-title">{subject.name}</h1>
-      <p className="text-paper-600 mb-2">
+      <p className="text-paper-100 mb-2">
         {semester.name}
       </p>
-      <p className="text-paper-600 mb-8">
+      <p className="text-paper-200 mb-8">
         View or download assignments
       </p>
 

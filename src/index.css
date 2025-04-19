@@ -5,32 +5,48 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%; /* Black */
-    --foreground: 0 0% 100%; /* White */
+    --background: 215 91% 7%;
+    --foreground: 210 16% 82%;
+    --radius: 6px;
   }
 
   body {
-    @apply bg-black text-white;
+    @apply bg-background text-foreground font-mono;
   }
 }
 
 @layer components {
   .page-container {
-    @apply container mx-auto px-4 py-6 max-w-6xl min-h-screen bg-black text-white;
+    @apply container mx-auto px-4 py-6 max-w-6xl min-h-screen bg-background text-foreground;
   }
   
   .page-title {
-    @apply text-3xl md:text-4xl font-bold mb-6 text-primary;
+    @apply text-3xl md:text-4xl font-bold mb-6 text-foreground;
   }
   
   .page-subtitle {
-    @apply text-xl md:text-2xl font-semibold mb-4 text-accent;
+    @apply text-xl md:text-2xl font-semibold mb-4 text-foreground;
+  }
+
+  .github-card {
+    @apply bg-paper-600 rounded-md border border-border shadow-sm hover:border-paper-400 transition-colors duration-200;
+  }
+
+  .github-button {
+    @apply bg-paper-500 hover:bg-paper-400 text-foreground border border-border rounded-md px-3 py-1.5 text-sm font-medium transition-colors;
+  }
+
+  .github-button-primary {
+    @apply bg-primary hover:bg-primary/80 text-white border border-primary/30 rounded-md px-3 py-1.5 text-sm font-medium transition-colors;
   }
 }
 
-/* Add some colorful hover and focus effects */
 @layer utilities {
   .colorful-hover {
-    @apply transition-colors duration-300 hover:text-accent hover:bg-primary/10;
+    @apply transition-colors duration-200 hover:bg-paper-500;
+  }
+
+  .github-hover {
+    @apply transition-all duration-200 hover:border-paper-400;
   }
 }

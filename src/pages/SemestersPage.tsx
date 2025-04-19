@@ -13,7 +13,7 @@ const SemestersPage = () => {
     <div className="page-container">
       <Breadcrumbs items={breadcrumbItems} />
       <h1 className="page-title">All Semesters</h1>
-      <p className="text-paper-600 mb-8">
+      <p className="text-paper-200 mb-8">
         Select a semester to explore subjects and assignments
       </p>
 
