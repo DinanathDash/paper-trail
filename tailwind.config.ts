@@ -20,61 +20,40 @@ export default {
 		},
 		extend: {
 			colors: {
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
+				background: '#000000',
+				foreground: '#FFFFFF',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					DEFAULT: '#9b87f5', // Primary Purple
+					foreground: '#FFFFFF'
 				},
 				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
-				},
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
-				},
-				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					DEFAULT: '#7E69AB', // Secondary Purple
+					foreground: '#FFFFFF'
 				},
 				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					DEFAULT: '#D946EF', // Magenta Pink
+					foreground: '#FFFFFF'
 				},
-				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
+				destructive: {
+					DEFAULT: '#F97316', // Bright Orange
+					foreground: '#FFFFFF'
 				},
-				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
-				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				muted: {
+					DEFAULT: '#8E9196', // Neutral Gray
+					foreground: '#FFFFFF'
 				},
 				paper: {
-					'50': '#f0f6ff',
-					'100': '#e4eefe',
-					'200': '#cddefa',
-					'300': '#abd3f5',
-					'400': '#84bbed',
-					'500': '#599ee3',
-					'600': '#3d7fd6',
-					'700': '#3266c0',
-					'800': '#2d559c',
-					'900': '#2a487c',
-					'950': '#1e2e4c',
+					'50': '#D6BCFA', // Light Purple
+					'100': '#8B5CF6', // Vivid Purple
+					'200': '#0EA5E9', // Ocean Blue
+					'300': '#1EAEDB', // Bright Blue
+					'400': '#33C3F0', // Sky Blue
+					'500': '#FFFFFF', // White
+					'600': '#D6BCFA', // Light Purple
+					'700': '#8B5CF6', // Vivid Purple
+					'800': '#0EA5E9', // Ocean Blue
+					'900': '#1EAEDB', // Bright Blue
+					'950': '#33C3F0', // Sky Blue
 				},
 			},
 			borderRadius: {
@@ -84,20 +63,12 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				}
 			},
 			animation: {
