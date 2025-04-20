@@ -191,8 +191,7 @@
               {
                 "name": "info",
                 "path": "cse/.git/objects/info",
-                "type": "folder",
-                "children": []
+                "type": "folder"
               },
               {
                 "name": "pack",
@@ -200,18 +199,18 @@
                 "type": "folder",
                 "children": [
                   {
-                    "name": "pack-4b28f1dc13c90db56c971b1deee6340ebd336030.idx",
-                    "path": "cse/.git/objects/pack/pack-4b28f1dc13c90db56c971b1deee6340ebd336030.idx",
+                    "name": "pack-ea4691e924689b1209e16fa710e2e94626828557.idx",
+                    "path": "cse/.git/objects/pack/pack-ea4691e924689b1209e16fa710e2e94626828557.idx",
                     "type": "file"
                   },
                   {
-                    "name": "pack-4b28f1dc13c90db56c971b1deee6340ebd336030.pack",
-                    "path": "cse/.git/objects/pack/pack-4b28f1dc13c90db56c971b1deee6340ebd336030.pack",
+                    "name": "pack-ea4691e924689b1209e16fa710e2e94626828557.pack",
+                    "path": "cse/.git/objects/pack/pack-ea4691e924689b1209e16fa710e2e94626828557.pack",
                     "type": "file"
                   },
                   {
-                    "name": "pack-4b28f1dc13c90db56c971b1deee6340ebd336030.rev",
-                    "path": "cse/.git/objects/pack/pack-4b28f1dc13c90db56c971b1deee6340ebd336030.rev",
+                    "name": "pack-ea4691e924689b1209e16fa710e2e94626828557.rev",
+                    "path": "cse/.git/objects/pack/pack-ea4691e924689b1209e16fa710e2e94626828557.rev",
                     "type": "file"
                   }
                 ]
@@ -262,8 +261,7 @@
               {
                 "name": "tags",
                 "path": "cse/.git/refs/tags",
-                "type": "folder",
-                "children": []
+                "type": "folder"
               }
             ]
           },
