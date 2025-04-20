@@ -1,5 +1,5 @@
 
-import { FileIcon, ExternalLink, Download } from "lucide-react";
+import { FileArchive, FileAudio, FileCode, FileImage, FileSpreadsheet, FileText, FileType, FileVideo, FileIcon, ExternalLink, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface AssignmentCardProps {
@@ -12,24 +12,93 @@ const AssignmentCard = ({ title, file }: AssignmentCardProps) => {
   
   const getFileIcon = () => {
     switch (fileExtension.toLowerCase()) {
+      // Documents
       case 'pdf':
-        return <FileIcon className="h-6 w-6 text-accent" />;
-      case 'docx':
+        return <FileText className="h-6 w-6 text-red-500" />;
       case 'doc':
-        return <FileIcon className="h-6 w-6 text-primary" />;
-      case 'pptx':
+      case 'docx':
+        return <FileText className="h-6 w-6 text-blue-500" />;
+      case 'txt':
+        return <FileText className="h-6 w-6 text-gray-500" />;
+      
+      // Presentations
       case 'ppt':
-        return <FileIcon className="h-6 w-6 text-destructive" />;
-      case 'xlsx':
+      case 'pptx':
+        return <FileText className="h-6 w-6 text-orange-500" />;
+      
+      // Spreadsheets
       case 'xls':
-        return <FileIcon className="h-6 w-6 text-muted" />;
+      case 'xlsx':
+      case 'csv':
+        return <FileSpreadsheet className="h-6 w-6 text-green-500" />;
+      
+      // Images
+      case 'jpg':
+      case 'jpeg':
+      case 'png':
+      case 'gif':
+      case 'svg':
+      case 'webp':
+        return <FileImage className="h-6 w-6 text-purple-500" />;
+      
+      // Audio
+      case 'mp3':
+      case 'wav':
+      case 'ogg':
+        return <FileAudio className="h-6 w-6 text-pink-500" />;
+      
+      // Video
+      case 'mp4':
+      case 'webm':
+      case 'avi':
+        return <FileVideo className="h-6 w-6 text-indigo-500" />;
+      
+      // Code
+      case 'js':
+      case 'ts':
+      case 'jsx':
+      case 'tsx':
+      case 'html':
+      case 'css':
+      case 'json':
+        return <FileCode className="h-6 w-6 text-yellow-500" />;
+      
+      // Archives
+      case 'zip':
+      case 'rar':
+      case '7z':
+      case 'tar':
+      case 'gz':
+        return <FileArchive className="h-6 w-6 text-amber-500" />;
+      
+      // Default
       default:
-        return <FileIcon className="h-6 w-6 text-foreground" />;
+        return <FileType className="h-6 w-6 text-gray-500" />;
+    }
+  };
+
+  const handleView = () => {
+    const extension = fileExtension.toLowerCase();
+    const isViewable = [
+      'pdf', 'txt', 'jpg', 'jpeg', 'png', 'gif', 'svg', 'webp',
+      'mp3', 'wav', 'ogg', 'mp4', 'webm'
+    ].includes(extension);
+
+    if (isViewable) {
+      window.open(file, '_blank');
+    } else {
+      // For non-viewable files, trigger download
+      const link = document.createElement('a');
+      link.href = file;
+      link.download = title;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   };
 
   return (
-    <div className="github-card p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div className="github-card p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:bg-paper-600/50 transition-colors">
       <div className="flex items-center">
         <div className="mr-3">
           {getFileIcon()}
@@ -44,7 +113,7 @@ const AssignmentCard = ({ title, file }: AssignmentCardProps) => {
           variant="outline"
           size="sm"
           className="flex-1 sm:flex-initial github-button"
-          onClick={() => window.open(file, '_blank')}
+          onClick={handleView}
         >
           <ExternalLink className="h-4 w-4 mr-2" />
           View
@@ -54,7 +123,7 @@ const AssignmentCard = ({ title, file }: AssignmentCardProps) => {
           className="flex-1 sm:flex-initial github-button-primary"
           asChild
         >
-          <a href={file} download>
+          <a href={file} download={title}>
             <Download className="h-4 w-4 mr-2" />
             Download
           </a>
