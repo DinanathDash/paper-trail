@@ -1,5 +1,5 @@
-
 import { Semester, Subject, Assignment } from "@/data/assignments";
+import { toast } from "sonner";
 
 interface FileNode {
   name: string;
@@ -17,11 +17,24 @@ export const fetchFileStructure = async (): Promise<FileNode[]> => {
   try {
     const response = await fetch('/files.json');
     if (!response.ok) {
-      throw new Error('Failed to fetch file structure');
+      throw new Error(`Failed to fetch file structure: ${response.statusText}`);
     }
-    return await response.json();
+    
+    const contentType = response.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+      throw new Error("Invalid response format. Expected JSON.");
+    }
+
+    const data = await response.json();
+    if (!Array.isArray(data)) {
+      throw new Error("Invalid file structure format");
+    }
+    
+    return data;
   } catch (error) {
-    console.error('Error fetching file structure:', error);
+    const message = error instanceof Error ? error.message : 'Unknown error occurred';
+    console.error('Error fetching file structure:', message);
+    toast.error("Failed to load file structure. Please try again later.");
     return [];
   }
 }

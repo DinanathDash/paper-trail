@@ -1,6 +1,6 @@
-
 import { fetchFileStructure, mapFileStructureToSemesters } from "@/utils/fileSystem";
-import { Assignment, Subject, Semester } from "./assignments";
+import { Assignment, Subject, Semester, semesters as staticSemesters } from "./assignments";
+import { toast } from "sonner";
 
 let cachedSemesters: Semester[] = [];
 let isFetching = false;
@@ -14,12 +14,20 @@ export const getDynamicSemesters = async (): Promise<Semester[]> => {
     isFetching = true;
     try {
       const fileStructure = await fetchFileStructure();
-      cachedSemesters = mapFileStructureToSemesters(fileStructure);
+      if (fileStructure.length === 0) {
+        throw new Error("No file structure available");
+      }
+      
+      const mappedSemesters = mapFileStructureToSemesters(fileStructure);
+      if (mappedSemesters.length === 0) {
+        throw new Error("No semesters found in file structure");
+      }
+      
+      cachedSemesters = mappedSemesters;
     } catch (error) {
       console.error("Failed to fetch dynamic semesters:", error);
-      // Fall back to static data if available
-      const { semesters } = await import("./assignments");
-      cachedSemesters = semesters;
+      toast.error("Using fallback data. Some features might be limited.");
+      cachedSemesters = staticSemesters;
     } finally {
       isFetching = false;
     }
