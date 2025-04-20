@@ -20,7 +20,7 @@ jobs:
       - name: Checkout paper-trails repository
         uses: actions/checkout@v3
         with:
-          repository: your-username/paper-trails  # Replace with your actual repository
+          repository: DinanathDash/paper-trails  # Changed from URL to owner/repo format
           path: paper-trails
           token: ${{ secrets.PAPER_TRAILS_PAT }}  # Personal access token with repo scope
       
