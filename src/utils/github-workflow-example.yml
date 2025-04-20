@@ -1,0 +1,92 @@
+
+name: Generate Files JSON
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'CSE/**'  # Only trigger when files in CSE directory change
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  generate-files-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout cse repository
+        uses: actions/checkout@v3
+        with:
+          path: cse
+
+      - name: Checkout paper-trails repository
+        uses: actions/checkout@v3
+        with:
+          repository: your-username/paper-trails  # Replace with your actual repository
+          path: paper-trails
+          token: ${{ secrets.PAPER_TRAILS_PAT }}  # Personal access token with repo scope
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Generate files.json
+        run: |
+          # Create a Node.js script to recursively scan the directory
+          cat > generate-files-json.js << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          function scanDirectory(directory) {
+            const files = fs.readdirSync(directory);
+            
+            return files.map(file => {
+              const filePath = path.join(directory, file);
+              const stats = fs.statSync(filePath);
+              const isDirectory = stats.isDirectory();
+              
+              const node = {
+                name: file,
+                path: filePath.replace(/\\/g, '/'),
+                type: isDirectory ? 'folder' : 'file'
+              };
+              
+              if (isDirectory) {
+                node.children = scanDirectory(filePath);
+              }
+              
+              return node;
+            });
+          }
+
+          // Start scanning from the CSE directory
+          const fileStructure = scanDirectory('cse/CSE');
+          
+          // Create a root structure
+          const rootStructure = [{
+            name: 'CSE',
+            path: 'CSE',
+            type: 'folder',
+            children: fileStructure
+          }];
+          
+          // Write the output to files.json
+          fs.writeFileSync('files.json', JSON.stringify(rootStructure, null, 2));
+          
+          console.log('Generated files.json successfully');
+          EOF
+          
+          # Execute the script
+          node generate-files-json.js
+      
+      - name: Copy files.json to paper-trails
+        run: |
+          cp files.json paper-trails/public/
+      
+      - name: Commit and push changes to paper-trails
+        run: |
+          cd paper-trails
+          git config user.name 'GitHub Actions Bot'
+          git config user.email 'actions@github.com'
+          git add public/files.json
+          git commit -m "Update files.json from cse repository" || echo "No changes to commit"
+          git push
