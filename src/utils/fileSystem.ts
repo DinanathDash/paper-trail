@@ -1,4 +1,6 @@
 
+import { Semester, Subject, Assignment } from "@/data/assignments";
+
 interface FileNode {
   name: string;
   path: string;
