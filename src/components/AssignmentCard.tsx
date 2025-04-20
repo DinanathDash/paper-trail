@@ -61,6 +61,23 @@ const AssignmentCard = ({ title, file }: AssignmentCardProps) => {
       case 'html':
       case 'css':
       case 'json':
+      case 'xml':
+      case 'java':
+      case 'py':
+      case 'c':
+      case 'cpp':
+      case 'cs':
+      case 'go':
+      case 'php':
+      case 'rb':
+      case 'swift':
+      case 'sh':
+      case 'bash':
+      case 'sql':
+      case 'yaml':
+      case 'yml':
+      case 'md':
+      case 'markdown':
         return <FileCode className="h-6 w-6 text-yellow-500" />;
       
       // Archives
@@ -110,30 +127,28 @@ const AssignmentCard = ({ title, file }: AssignmentCardProps) => {
     }
   };
 
-  const handleDownload = async (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    
-    try {
-      // Check if file exists
-      const response = await fetch(file, { method: 'HEAD' });
-      
-      if (!response.ok) {
-        toast.error(`File not found: ${file}`);
-        return;
+  const handleDownload = async () => {
+      try {
+        // Check if file exists
+        const response = await fetch(file, { method: 'HEAD' });
+        
+        if (!response.ok) {
+          toast.error(`File not found: ${file}`);
+          return;
+        }
+        
+        // Trigger download
+        const link = document.createElement('a');
+        link.href = file;
+        link.download = title;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (error) {
+        toast.error("Error downloading file. It may not exist or you don't have permission.");
+        console.error("File download error:", error);
       }
-      
-      // Trigger download
-      const link = document.createElement('a');
-      link.href = file;
-      link.download = title;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      toast.error("Error downloading file. It may not exist or you don't have permission.");
-      console.error("File download error:", error);
-    }
-  };
+    };
 
   return (
     <div className="github-card p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:bg-paper-600/50 transition-colors">
