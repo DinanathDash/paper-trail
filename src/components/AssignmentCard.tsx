@@ -1,6 +1,6 @@
-
 import { FileArchive, FileAudio, FileCode, FileImage, FileSpreadsheet, FileText, FileType, FileVideo, FileIcon, ExternalLink, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 interface AssignmentCardProps {
   title: string;
@@ -77,23 +77,61 @@ const AssignmentCard = ({ title, file }: AssignmentCardProps) => {
     }
   };
 
-  const handleView = () => {
+  const handleView = async () => {
     const extension = fileExtension.toLowerCase();
     const isViewable = [
       'pdf', 'txt', 'jpg', 'jpeg', 'png', 'gif', 'svg', 'webp',
-      'mp3', 'wav', 'ogg', 'mp4', 'webm'
+      'mp3', 'wav', 'ogg', 'mp4', 'webm', 'html'
     ].includes(extension);
 
-    if (isViewable) {
-      window.open(file, '_blank');
-    } else {
-      // For non-viewable files, trigger download
+    try {
+      // Check if file exists
+      const response = await fetch(file, { method: 'HEAD' });
+      
+      if (!response.ok) {
+        toast.error(`File not found: ${file}`);
+        return;
+      }
+      
+      if (isViewable) {
+        window.open(file, '_blank');
+      } else {
+        // For non-viewable files, trigger download
+        const link = document.createElement('a');
+        link.href = file;
+        link.download = title;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } catch (error) {
+      toast.error("Error accessing file. It may not exist or you don't have permission.");
+      console.error("File access error:", error);
+    }
+  };
+
+  const handleDownload = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    try {
+      // Check if file exists
+      const response = await fetch(file, { method: 'HEAD' });
+      
+      if (!response.ok) {
+        toast.error(`File not found: ${file}`);
+        return;
+      }
+      
+      // Trigger download
       const link = document.createElement('a');
       link.href = file;
       link.download = title;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+    } catch (error) {
+      toast.error("Error downloading file. It may not exist or you don't have permission.");
+      console.error("File download error:", error);
     }
   };
 
@@ -121,12 +159,10 @@ const AssignmentCard = ({ title, file }: AssignmentCardProps) => {
         <Button
           size="sm"
           className="flex-1 sm:flex-initial github-button-primary"
-          asChild
+          onClick={handleDownload}
         >
-          <a href={file} download={title}>
-            <Download className="h-4 w-4 mr-2" />
-            Download
-          </a>
+          <Download className="h-4 w-4 mr-2" />
+          Download
         </Button>
       </div>
     </div>

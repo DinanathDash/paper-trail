@@ -1,3 +1,4 @@
+
 import { Semester, Subject, Assignment } from "@/data/assignments";
 import { toast } from "sonner";
 
